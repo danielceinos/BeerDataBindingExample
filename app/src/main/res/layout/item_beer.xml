@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="beer" type="com.danielsanchezc.databindingexample.Beer"/>
+        <variable name="onBeerLogoClick" type="com.danielsanchezc.databindingexample.OnClick"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" tools:context=".MainActivity">
+
+        <ImageView
+                app:imageUrl='@{beer.imageUrl"}'
+                android:id="@+id/beer_logo_iv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="@{(v) -> onBeerLogoClick.clicked(v, beer)}"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/beer_name_tv"
+                style="@style/Base.TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/beer_logo_iv"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@{beer.name}"
+                tools:text="New Peculier"/>
+
+        <TextView
+                android:id="@+id/beer_style_tv"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text='@{beer.style ?? "Unkown style" }'
+                app:layout_constraintStart_toStartOf="@+id/beer_name_tv"
+                app:layout_constraintTop_toBottomOf="@+id/beer_name_tv"
+                tools:text="Old Ale"/>
+
+        <TextView
+                android:id="@+id/beer_brewer_tv"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/beer_style_tv"
+                app:layout_constraintStart_toEndOf="@+id/beer_style_tv"
+                app:layout_constraintTop_toTopOf="@+id/beer_style_tv"
+                android:layout_marginStart="20dp"
+                android:text='@{beer.brewer ?? "Unkown brewer"}'
+                tools:text="British Ale"/>
+
+        <TextView
+                android:id="@+id/beer_alc_tv"
+                style="@style/Base.TextAppearance.AppCompat.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/beer_logo_iv"
+                app:layout_constraintStart_toStartOf="@+id/beer_style_tv"
+                app:layout_constraintTop_toBottomOf="@+id/beer_style_tv"
+                app:alc='@{beer.alc ?? "Unkown alc" }'
+                tools:text="5.8%"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
